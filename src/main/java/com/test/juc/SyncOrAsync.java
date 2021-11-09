@@ -15,22 +15,24 @@ public class SyncOrAsync {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(Thread.currentThread().getName() + "m1 运行结合");
+        System.out.println(Thread.currentThread().getName() + "m1 运行结束");
     }
 
     public void m2(){
         System.out.println(Thread.currentThread().getName() + "m2 开始运行");
         try{
+            this.m1();
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(Thread.currentThread().getName() + "m2 运行结合");
+        System.out.println(Thread.currentThread().getName() + "m2 运行结束");
     }
 
     public static void main(String[] args) {
         SyncOrAsync sos = new SyncOrAsync();
-        new Thread(sos :: m1,"m1").start();
-        new Thread(sos :: m2,"m2").start();
+//        new Thread(sos :: m1,"m1").start();
+        new Thread(sos :: m2,"").start();
+        new Thread(sos :: m2,"另一个").start();
     }
 }
